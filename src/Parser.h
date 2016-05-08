@@ -34,12 +34,19 @@ private:
 	static const std::string DEFAULT_SELECTOR;
 	static const std::string LEVEL_CODE_KEY;
 	static const std::string LEVEL_NODE_KEY;
+
 	Json::Value getData(Json::Value configStructLevel, Json::Value levels, xmlpp::NodeSet const& dom);
 	Json::Value iterateLevel(Json::Value configStructLevel, Json::Value levels, xmlpp::NodeSet const& dom);
 	Json::Value getLevelByCode(Json::Value configCode, Json::Value levels);
-	Json::Value handleLevel(Json::Value configCode, Json::Value levels, xmlpp::NodeSet const& dom);
-	Json::Value handleLevelPath(Json::Value levelPath, xmlpp::NodeSet const& dom);
+	Json::Value handleLevel(Json::Value level, xmlpp::NodeSet const& dom);
 	Json::Value handleLevelFilter(Json::Value levelFilter, xmlpp::NodeSet const& dom);
 	Json::Value handleLevelData(Json::Value levelData, xmlpp::NodeSet const& dom);
+
+/*	std:string handleDataValue();
+	std:string handleDataAttribute();
+	std:boolean handleDataNotNul();
+	std:string handleDataHtml();
+	std:string handleDataText();
+	std:string handleDataStyle();*/
 };
 #endif /* SRC_PARSER_H_ */

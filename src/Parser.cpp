@@ -6,6 +6,7 @@
  */
 
 #include "Parser.h"
+#include "Path.h"
 #include <iostream>
 
 using namespace Json;
@@ -18,6 +19,7 @@ const std::string Parser::LIST_KEY = "listKey";
 const std::string Parser::LEVEL_CODE_KEY = "code";
 const std::string Parser::LEVEL_NODE_KEY = "node";
 
+
 Parser::Parser() {
 	// TODO Auto-generated constructor stub
 
@@ -29,6 +31,7 @@ Value Parser::get(Value config, xmlpp::Node const& dom) {
 			parentSelectorType == nullValue ?
 					DEFAULT_SELECTOR : config[PARENT_SELECTOR_KEY].asString();
 	xmlpp::NodeSet domNode = dom.find(parentSelector);
+	PathUtils::handle(config, domNode);
 	return this->getData(config[LEVELS_KEY], config[LEVEL_CONFIG_KEY], domNode);
 }
 
@@ -49,7 +52,7 @@ Value Parser::iterateLevel(Value configStructLevel, Value levels,
 	//TODO size() ?
 	Value level = this->getLevelByCode(configStructLevel, levels);
 	if (level.size() > 0) {
-
+		this->handleLevel(level, dom);
 	}
 }
 
@@ -67,15 +70,13 @@ Value Parser::getLevelByCode(Value configCode, Value levels) {
 	return new Value();
 }
 
-Value Parser::handleLevel(Value configCode, Value levels,
-		xmlpp::NodeSet const& dom) {
+Value Parser::handleLevel(Value level, xmlpp::NodeSet const& dom) {
+	//xmlpp::NodeSet domNodes = this->handleLevelPath(level[LEVEL_PATH_KEY], dom);
 
 }
 
-Value handleLevelPath(Value levelPath, xmlpp::NodeSet const& dom) {
-	if (levelPath.type() == arrayValue && levelPath.size() > 0) {
+xmlpp::NodeSet handlePathSibl(xmlpp::NodeSet const& dom, Value path) {
 
-	}
 }
 
 Value handleLevelFilter(Value levelFilter, xmlpp::NodeSet const& dom) {
