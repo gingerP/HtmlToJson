@@ -25,7 +25,7 @@ Parser::Parser() {
 
 }
 
-Value Parser::get(Value config, xmlpp::Node const& dom) {
+Value Parser::get(Value config, const xmlpp::Node& dom) {
 	ValueType parentSelectorType = config[PARENT_SELECTOR_KEY].type();
 	std::string parentSelector =
 			parentSelectorType == nullValue ?
